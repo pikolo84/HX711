@@ -50,9 +50,9 @@ void HX711::set_gain(byte gain) {
 
 long HX711::read() {
 	// wait for the chip to become ready
-	if (!is_ready()) {
-		// Change to return this for manage HX711 lost conectivity
-		return 0xFFFFFFFF;
+	while (!is_ready()) {
+		// Will do nothing on Arduino but prevent resets of ESP8266 (Watchdog Issue)
+		yield();
 	}
 
 	unsigned long value = 0;
