@@ -44,9 +44,15 @@ void HX711::set_gain(byte gain) {
 
 long HX711::read() {
 	// wait for the chip to become ready
+	//Inserted timeout
+	unsigned long previousMillis = millis();
 	while (!is_ready()) {
 		// Will do nothing on Arduino but prevent resets of ESP8266 (Watchdog Issue)
 		yield();
+		if ((millis() - previousMillis) >= 500) {
+			Serial.println("CACA");
+			return 0x80000000;
+		}
 	}
 
 	unsigned long value = 0;
