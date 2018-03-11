@@ -50,7 +50,6 @@ long HX711::read() {
 		// Will do nothing on Arduino but prevent resets of ESP8266 (Watchdog Issue)
 		yield();
 		if ((millis() - previousMillis) >= 500) {
-			Serial.println("CACA");
 			return 0x80000000;
 		}
 	}

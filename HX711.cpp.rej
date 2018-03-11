@@ -1,0 +1,9 @@
+diff a/HX711.cpp b/HX711.cpp	(rejected hunks)
+@@ -50,6 +50,7 @@
+ 		// Will do nothing on Arduino but prevent resets of ESP8266 (Watchdog Issue)
+ 		yield();
+ 		if ((millis() - previousMillis) >= 500) {
++			Serial.println("CACA");
+ 			return 0x80000000;
+ 		}
+ 	}
