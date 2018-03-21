@@ -15,6 +15,7 @@ class HX711
 		byte GAIN;		// amplification factor
 		long OFFSET = 0;	// used for tare weight
 		float SCALE = 1;	// used to return weight in grams, kg, ounces, whatever
+		bool Error = false;
 
 	public:
 		// define clock and data pin, channel, and gain factor
@@ -72,6 +73,9 @@ class HX711
 
 		// wakes up the chip after power down mode
 		void power_up();
+
+		//Check if the scale isn't isConnected
+		bool error();
 };
 
 #endif /* HX711_h */

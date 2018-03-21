@@ -50,9 +50,11 @@ long HX711::read() {
 		// Will do nothing on Arduino but prevent resets of ESP8266 (Watchdog Issue)
 		yield();
 		if ((millis() - previousMillis) >= 500) {
+			error = true;
 			return 0x80000000;
 		}
 	}
+	error = false;
 
 	unsigned long value = 0;
 	uint8_t data[3] = { 0 };
@@ -130,4 +132,8 @@ void HX711::power_down() {
 
 void HX711::power_up() {
 	digitalWrite(PD_SCK, LOW);
+}
+
+bool HX711::error() {
+	return error;
 }
